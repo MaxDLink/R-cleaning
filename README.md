@@ -41,7 +41,7 @@ head(cont_codes_data) #view first 6 rows of data to see variable names and data 
 nrow(cont_codes_data) #view number of rows
 ncol(cont_codes_data) #view number of columns
 
-### only selecting FIPS, State, County Name, Value (metro/nonmetro) columns
+### only selecting State, County Name, Value (metro/nonmetro) columns
 cont_codes_data.sub=cont_codes_data[,c(2, 3, 5)] #create data subset with all rows but only the columns of interest
 head(cont_codes_data.sub) #confirm correct columns were selected
 
