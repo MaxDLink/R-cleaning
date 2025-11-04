@@ -11,7 +11,7 @@ ev_data=read.csv(file.choose()) #read in file
 ### only include 2023 years because the continuum codes were sampled 2023 
 ev_data_filtered_date = ev_data[grepl("2023", ev_data$Date), ]
 
-### only selecting County, State, VPU, PEV
+### only selecting Date, County, State, VPU, PEV
 ev_data_filtered_date.sub=ev_data_filtered_date[,c(1, 2,3,4,10)] #create data subset with all rows but only the columns of interest
 head(ev_data_filtered_date.sub) #confirm correct columns were selected
 
