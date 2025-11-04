@@ -6,8 +6,9 @@
 
 ## Clean Electric vehicle population size by county csv 
 
+```bash
 ev_data=read.csv(file.choose()) #read in file
-
+```
 ### only include 2023 years because the continuum codes were sampled 2023 
 ev_data_filtered_date = ev_data[grepl("2023", ev_data$Date), ]
 
