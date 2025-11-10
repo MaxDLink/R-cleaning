@@ -25,10 +25,19 @@ ev_data3=ev_data2[ev_data2$County!="" | ev_data2$State!="",]
 nrow(ev_data3) #view new number of rows
 
 # turn VPU into cat. (Categorical- Passenger (0) or Truck (1))
-ev_data3$VPU = ifelse(ev_data3$VPU == "Passenger", 0,
+ev_data3$VPU_Numeric = ifelse(ev_data3$VPU == "Passenger", 0,
                       ifelse(ev_data3$VPU == "Truck", 1, NA))
+
 # verify that we stored the values as numeric 
-is.numeric(ev_data3$VPU)
+is.numeric(ev_data3$VPU_Numeric)
+
+head(ev_data3)
+
+# order VPU_Numeric after VPU column 
+library(dplyr)
+
+ev_data3 <- ev_data3 %>%
+  relocate(VPU_Numeric, .after = VPU)
 
 head(ev_data3)
 
@@ -50,10 +59,10 @@ cont_codes_data2=na.omit(cont_codes_data.sub)
 nrow(cont_codes_data2) #view number of rows
 
 # turn Metro_Status into cat. (Categorical- Metro (1) or Nonmetro (0))
-cont_codes_data2$Metro_Status = ifelse(grepl("^Metro", cont_codes_data2$Metro_Status), 1,
+cont_codes_data2$Metro_Status_Numeric = ifelse(grepl("^Metro", cont_codes_data2$Metro_Status), 1,
                       ifelse(grepl("^Nonmetro", cont_codes_data2$Metro_Status), 0, NA))
 
-is.numeric(cont_codes_data2$Metro_Status)
+is.numeric(cont_codes_data2$Metro_Status_Numeric)
 
 # remove all N/A sections 
 cont_codes_data3 = na.omit(cont_codes_data2)
@@ -91,4 +100,4 @@ nrow(omitted_merged_data)
 # check for any NA values for a final check 
 anyNA(omitted_merged_data)
 
-write.csv(omitted_merged_data, "cleaned_data.csv", row.names = FALSE)
+head(omitted_merged_data, 50)
