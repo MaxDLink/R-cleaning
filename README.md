@@ -30,10 +30,12 @@ ev_data3=ev_data2[ev_data2$County!="" | ev_data2$State!="",]
 nrow(ev_data3) #view new number of rows
 
 ### turn VPU (vehicle primary use) into cat. (Categorical- Passenger (0) or Truck (1))
-ev_data3$VPU = ifelse(ev_data3$VPU == "Passenger", 0,
+ev_data3$VPU_Numeric = ifelse(ev_data3$VPU == "Passenger", 0,
                       ifelse(ev_data3$VPU == "Truck", 1, NA))
+
+
 ### verify that we stored the values as numeric 
-is.numeric(ev_data3$VPU)
+is.numeric(ev_data3$VPU_Numeric)
 
 ## Clean rural-urban csv 
 cont_codes_data=read.csv(file.choose()) #read in file
@@ -53,10 +55,10 @@ cont_codes_data2=na.omit(cont_codes_data.sub)
 nrow(cont_codes_data2) #view number of rows
 
 ### turn Metro_Status into cat. (Categorical- Metro (1) or Nonmetro (0))
-cont_codes_data2$Metro_Status = ifelse(grepl("^Metro", cont_codes_data2$Metro_Status), 1,
+cont_codes_data2$Metro_Status_Numeric = ifelse(grepl("^Metro", cont_codes_data2$Metro_Status), 1,
                       ifelse(grepl("^Nonmetro", cont_codes_data2$Metro_Status), 0, NA))
 
-is.numeric(cont_codes_data2$Metro_Status)
+is.numeric(cont_codes_data2$Metro_Status_Numeric)
 
 ### remove all N/A sections 
 cont_codes_data3 = na.omit(cont_codes_data2)
